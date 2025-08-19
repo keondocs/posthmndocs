@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="title" content="Posthuman Docs — A Studio for Documentary and Posthuman Storytelling">
+<meta name="description" content="A studio by Kylian Weijers exploring documentary through a posthuman and feminist lens. Film, sound & research for a new kind of storytelling.">
+<meta name="keywords" content="posthuman documentary, feminist filmmaking, experimental storytelling, Kylian Weijers, artistic research, co-creation, ethics of representation, more-than-human, hybrid media, contemporary documentary, critical making">
+<meta name="author" content="Kylian Weijers">
+ <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="images/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="images/android-chrome-512x512.png">
+    <title>Posthuman Docs</title>
+    <style>
+
+        @font-face {
+            font-family: 'ABC Monument Grotesk Semi Mono';
+            src: url('fonts/ABCMonumentGroteskSemiMono-Light-Trial.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'ABC Monument Grotesk Semi Mono';
+            src: url('fonts/ABCMonumentGroteskSemiMono-Regular.woff2') format('woff2');
+            font-weight: bold;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Canela Condensed';
+            src: url('fonts/CanelaCondensed-Thin.otf') format('opentype');
+            font-weight: 300;
+            font-style: normal;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'ABC Monument Grotesk Semi Mono', 'Courier New', monospace;
+            overflow: hidden;
+            position: relative;
+            height: 100vh;
+            color: white;
+        }
+
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('images/background.jpg');
+            background-size: cover;
+            background-position: center;
+            z-index: -1;
+        }
+
+
+        .container {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            padding-left: 5%;
+            padding-right: 5%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        h1 {
+            font-family: 'Canela Condensed', serif;
+            font-size: 5rem;
+            font-weight: 100;
+            letter-spacing: 0.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            font-size: 0.9rem;
+            letter-spacing: 0.05rem;
+            opacity: 0.9;
+        }
+
+        .nav-links {
+            position: absolute;
+            bottom: 3rem;
+            left: 3rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none; /* Remove from the link */
+            font-size: 0.9rem;
+            letter-spacing: 0.05rem;
+            opacity: 0.9;
+            transition: opacity 0.3s ease;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            line-height: 1;
+        }
+
+        .nav-links a span {
+            text-decoration: underline; /* Apply only to the span */
+        }
+
+        .nav-links a:hover {
+            opacity: 1;
+        }
+
+        
+.nav-links a::before {
+    content: '';
+    width: 16px;
+    height: 16px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    flex-shrink: 0;
+}      
+
+.nav-links a[data-icon="forward"]::before {
+    background-image: url('images/icons/arrow_forward.svg');
+}
+
+.nav-links a[data-icon="outward"]::before {
+    background-image: url('images/icons/arrow_outward.svg');
+}
+
+        /* Cover screens */
+        .cover {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            display: none;
+            z-index: 10;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .cover.active {
+            display: block;
+            opacity: 1;
+        }
+
+        body.cover-active > *:not(.cover) {
+            filter: blur(5px);
+            transition: filter 0.5s ease;
+        }
+
+        .cover-content {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        .cover-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, 
+                rgba(82, 139, 120, 0.721) 20%, 
+                rgba(40, 69, 59, 0.769) 100%);
+        }
+
+        .content-wrapper {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 3rem;
+            color: white;
+        }
+
+        .content-section h2 {
+            font-family: 'ABCMonumentGrotesk', monospace;
+            font-size: 1rem;
+            letter-spacing: 0.1rem;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+        }
+
+        .content-section p {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            opacity: 0.95;
+        }
+
+        .content-section a {
+            color: white;
+            transition: opacity 0.3s ease;
+        }
+
+        .content-section a:hover {
+            opacity: 0.8;
+        }
+
+        .back-button {
+            position: absolute;
+            bottom: 3rem;
+            right: 3rem;
+            color: white;
+            text-decoration: none;
+            font-size: 0.9rem;
+            letter-spacing: 0.05rem;
+            opacity: 0.9;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            z-index: 3;
+        }
+
+        .back-button:hover {
+            opacity: 1;
+        }
+
+        
+.back-button::after {
+    content: '';
+    width: 16px;
+    height: 16px;
+    background-image: url('images/icons/keyboard_return.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+        /* Work page specific */
+        .work-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: white;
+        }
+
+        .work-content h2 {
+            font-family: 'ABCMonumentGrotesk', monospace;
+            font-size: 1rem;
+            letter-spacing: 0.1rem;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+        }
+
+        .work-content p {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            opacity: 0.95;
+        }
+
+        @media (max-width: 768px) {
+    h1 {
+        font-size: 3.5rem;
+    }
+    
+    /* Keep cover fixed and non-scrollable */
+    .cover {
+        overflow: hidden; /* Prevent scrolling */
+    }
+    
+    /* Make only the content wrapper scrollable */
+    .cover-content {
+        height: 100vh; /* Full viewport height */
+        overflow-y: auto; /* Enable scrolling on content only */
+        -webkit-overflow-scrolling: touch;
+        align-items: flex-start;
+        padding: 2rem 1.5rem 6rem;
+    }
+    
+    .content-wrapper {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        margin-top: 2rem;
+    }
+    
+    .content-section {
+        padding-bottom: 1rem;
+    }
+    
+    .nav-links {
+        left: 1.5rem;
+        bottom: 1.5rem;
+    }
+    
+    .back-button {
+        position: fixed;
+        right: 1.5rem;
+        bottom: 1.5rem;
+        background: rgba(80, 140, 120, 0.9);
+        padding: 0.5rem 1rem;
+        border-radius: 2px;
+    }
+    
+    .work-content {
+        padding: 2rem 1.5rem;
+        text-align: center;
+    }
+}
+    </style>
+</head>
+<body>
+    <div class="background"></div>
+    <div class="overlay"></div>
+    
+    <div class="container">
+        <h1>POSTHUMAN DOCS</h1>
+        <p class="subtitle">a studio by filmmaker and researcher Kylian Weijers dedicated to new ways of seeing, being and becoming</p>
+        
+        <nav class="nav-links">
+            <a href="#" id="about-link" data-icon="forward"><span>read more about the studio</span></a>
+            <a href="#" id="work-link" data-icon="forward"><span>explore the work</span></a>
+            <a href="mailto:kylian@posthmndocs.com" data-icon="outward"><span>get in touch</span></a>
+        </nav>
+    </div>
+
+    <!-- About Cover -->
+    <div id="about-cover" class="cover">
+        <div class="cover-overlay"></div>
+        <div class="cover-content">
+            <div class="content-wrapper">
+                <section class="content-section">
+                    <h2>MISSION</h2>
+                    <p>Hi, I'm Kylian Weijers: Amsterdam-based filmmaker, editor and researcher. Posthuman Docs is my studio of documentary practice and research – my field station, if you will. It's where I explore how film can function not only as a reflection of the world, but as a tool that reshapes how we relate: to ourselves, to others, and to the more-than-human.</p>
+                    <p>I work from a posthumanist and feminist perspective. That means I question who gets to speak, who gets seen, and how narratives might unfold beyond the grip of the dominant gaze.</p>
+                    <p>I challenge extractive modes of storytelling by grounding my practice in research, deep listening, and collective inquiry; always seeking to multiply perspectives and generate new forms of relational knowledge.</p>
+                </section>
+                
+                <section class="content-section">
+                    <h2>POSTHUMANISM</h2>
+                    <p>I work with posthuman and feminist thought to reconfigure what stories are, how they come into being, and who they serve.</p>
+                    <p>Posthumanism asks us to move beyond the idea of the human as the central subject of the world – and instead to see life as entangled, shifting, and collective. This isn't just about communities, animals, machines or nature, but about how we think, feel, and relate in a world shaped by histories of colonialism, capitalism, and technological power.</p>
+                    <p>In practice, this means working from the inside-out and approaching one another not as objects of study, but engaging from shared positions and always questioning: <em>Who speaks? Who listens? What worlds are made in the process?</em></p>
+                </section>
+                
+                <section class="content-section">
+                    <h2>WORK</h2>
+                    <p>Posthuman Docs brings together nearly a decade of interdisciplinary media practice with critical research. I hold a Master's degree in Documentary & Fiction from the University of Amsterdam, where I wrote on documentary ethics, posthumanism, and identity (co)construction within the filmmaker-participant relationship.</p>
+                    <p>Through film, installation, and digital forms, I create work that blurs the lines between documentary and ritual, research and imagination. I'm drawn to stories that move between the personal and the collective – especially those that make visible what is often overlooked, misread, or misunderstood.</p>
+                    <p>→ Posthuman Docs is a process of becoming; unfolding and transforming. If these ideas resonate with you or you would like to collaborate, I'd love to hear from you. In the meantime, explore some of my work at <a href="https://kylianweijers.com">kylianweijers.com</a>.</p>
+                </section>
+            </div>
+            <a href="#" class="back-button" id="about-back">go back</a>
+        </div>
+    </div>
+
+    <!-- Work Cover -->
+    <div id="work-cover" class="cover">
+        <div class="cover-overlay"></div>
+        <div class="cover-content">
+            <div class="work-content">
+                <h2>WORK</h2>
+                <p>Oh no! It appears that this space is still taking shape.<br>
+                We're in the process of uploading current and recent projects.</p>
+            </div>
+            <a href="#" class="back-button" id="work-back">go back</a>
+        </div>
+    </div>
+
+    <script>
+        // Handle navigation
+        const aboutLink = document.getElementById('about-link');
+        const workLink = document.getElementById('work-link');
+        const aboutCover = document.getElementById('about-cover');
+        const workCover = document.getElementById('work-cover');
+        const aboutBack = document.getElementById('about-back');
+        const workBack = document.getElementById('work-back');
+
+        // Update your existing event listeners
+aboutLink.addEventListener('click', (e) => {
+    e.preventDefault();
+    document.body.classList.add('cover-active');
+    aboutCover.style.display = 'block';
+    setTimeout(() => aboutCover.classList.add('active'), 10);
+});
+
+workLink.addEventListener('click', (e) => {
+    e.preventDefault();
+    document.body.classList.add('cover-active');
+    workCover.style.display = 'block';
+    setTimeout(() => workCover.classList.add('active'), 10);
+});
+
+aboutBack.addEventListener('click', (e) => {
+    e.preventDefault();
+    document.body.classList.remove('cover-active');
+    aboutCover.classList.remove('active');
+    setTimeout(() => aboutCover.style.display = 'none', 500);
+});
+
+workBack.addEventListener('click', (e) => {
+    e.preventDefault();
+    document.body.classList.remove('cover-active');
+    workCover.classList.remove('active');
+    setTimeout(() => workCover.style.display = 'none', 500);
+});
+
+        // Add wave animation effect to background
+        const background = document.querySelector('.background');
+        let animationFrame;
+        
+        function animateBackground() {
+            const time = Date.now() * 0.0001;
+            const x = Math.sin(time) * 2;
+            const y = Math.cos(time * 0.7) * 2;
+            
+            background.style.transform = `translate(${x}px, ${y}px) scale(1.05)`;
+            animationFrame = requestAnimationFrame(animateBackground);
+        }
+        
+        animateBackground();
+    </script>
+</body>
+</html>
