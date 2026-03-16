@@ -25,11 +25,12 @@ jobs:
           echo "tags: [changelog, methodology, version history]" >> docs/changelog/changelog.md
           echo "---" >> docs/changelog/changelog.md
           echo "" >> docs/changelog/changelog.md
-          echo "*A running record of changes to this site and studio — technical, textual, conceptual.*" >> docs/changelog/changelog.md
+          echo "\`\`\`" >> docs/changelog/changelog.md
+          echo "POSTHUMAN DOCS — CHANGE LOG" >> docs/changelog/changelog.md
+          echo "──────────────────────────────────────────────" >> docs/changelog/changelog.md
+          git log --pretty=format:"%ad  %s" --date=format:"%Y-%m-%d %H:%M" >> docs/changelog/changelog.md
           echo "" >> docs/changelog/changelog.md
-          echo "---" >> docs/changelog/changelog.md
-          echo "" >> docs/changelog/changelog.md
-          git log --pretty=format:"### %ad%n%n%s%n%n---" --date=format:"%d %B %Y" >> docs/changelog/changelog.md
+          echo "\`\`\`" >> docs/changelog/changelog.md
 
       - name: Commit changelog
         run: |
