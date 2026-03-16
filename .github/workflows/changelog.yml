@@ -1,0 +1,37 @@
+name: Update Changelog
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  update-changelog:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Generate changelog
+        run: |
+          echo "---" > docs/changelog/changelog.md
+          echo "title: CHANGELOG" >> docs/changelog/changelog.md
+          echo 'meta: "// site · version history · ongoing"' >> docs/changelog/changelog.md
+          echo "tags: [changelog, methodology, version history]" >> docs/changelog/changelog.md
+          echo "---" >> docs/changelog/changelog.md
+          echo "" >> docs/changelog/changelog.md
+          echo "*A running record of changes to this site and studio — technical, textual, conceptual.*" >> docs/changelog/changelog.md
+          echo "" >> docs/changelog/changelog.md
+          echo "---" >> docs/changelog/changelog.md
+          echo "" >> docs/changelog/changelog.md
+          git log --pretty=format:"### %ad%n%n%s%n%n---" --date=format:"%d %B %Y" >> docs/changelog/changelog.md
+
+      - name: Commit changelog
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add docs/changelog/changelog.md
+          git diff --staged --quiet || git commit -m "update changelog"
+          git push
