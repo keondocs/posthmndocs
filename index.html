@@ -1,438 +1,1244 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="title" content="Posthuman Docs — A Studio for Documentary and Posthuman Storytelling">
-<meta name="description" content="A studio by Kylian Weijers exploring documentary through a posthuman and feminist lens. Film, sound & research for a new kind of storytelling.">
-<meta name="keywords" content="posthuman documentary, feminist filmmaking, experimental storytelling, Kylian Weijers, artistic research, co-creation, ethics of representation, more-than-human, hybrid media, contemporary documentary, critical making">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="title" content="Posthuman Docs — A Studio for Documentary and Posthuman Storytelling">
+<meta name="description" content="A studio by Kylian Weijers exploring documentary through a posthuman and feminist lens.">
 <meta name="author" content="Kylian Weijers">
- <link rel="icon" type="image/x-icon" href="images/favicon.ico">
-    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="images/android-chrome-192x192.png">
-    <link rel="icon" type="image/png" sizes="512x512" href="images/android-chrome-512x512.png">
-    <title>Posthuman Docs</title>
-    <style>
-
-        @font-face {
-            font-family: 'ABC Monument Grotesk Semi Mono';
-            src: url('fonts/ABCMonumentGroteskSemiMono-Light-Trial.woff2') format('woff2');
-            font-weight: normal;
-            font-style: normal;
-        }
-
-        @font-face {
-            font-family: 'ABC Monument Grotesk Semi Mono';
-            src: url('fonts/ABCMonumentGroteskSemiMono-Regular.woff2') format('woff2');
-            font-weight: bold;
-            font-style: normal;
-        }
-
-        @font-face {
-            font-family: 'Canela Condensed';
-            src: url('fonts/CanelaCondensed-Thin.otf') format('opentype');
-            font-weight: 300;
-            font-style: normal;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'ABC Monument Grotesk Semi Mono', 'Courier New', monospace;
-            overflow: hidden;
-            position: relative;
-            height: 100vh;
-            color: white;
-        }
-
-        .background {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url('images/background.jpg');
-            background-size: cover;
-            background-position: center;
-            z-index: -1;
-        }
-
-
-        .container {
-            position: relative;
-            z-index: 2;
-            width: 100%;
-            padding-left: 5%;
-            padding-right: 5%;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
-        h1 {
-            font-family: 'Canela Condensed', serif;
-            font-size: 5rem;
-            font-weight: 100;
-            letter-spacing: 0.1rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .subtitle {
-            font-size: 0.9rem;
-            letter-spacing: 0.05rem;
-            opacity: 0.9;
-        }
-
-        .nav-links {
-            position: absolute;
-            bottom: 3rem;
-            left: 3rem;
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-
-        .nav-links a {
-            color: white;
-            text-decoration: none; /* Remove from the link */
-            font-size: 0.9rem;
-            letter-spacing: 0.05rem;
-            opacity: 0.9;
-            transition: opacity 0.3s ease;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
-            line-height: 1;
-        }
-
-        .nav-links a span {
-            text-decoration: underline; /* Apply only to the span */
-        }
-
-        .nav-links a:hover {
-            opacity: 1;
-        }
-
-        
-.nav-links a::before {
-    content: '';
-    width: 16px;
-    height: 16px;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    flex-shrink: 0;
-}      
-
-.nav-links a[data-icon="forward"]::before {
-    background-image: url('images/icons/arrow_forward.svg');
+<title>Posthuman Docs</title>
+<style>
+@font-face {
+  font-family: 'ABC Monument Grotesk Semi Mono';
+  src: url('fonts/ABCMonumentGroteskSemiMono-Light-Trial.woff2') format('woff2');
+  font-weight: normal;
+}
+@font-face {
+  font-family: 'ABC Monument Grotesk Semi Mono';
+  src: url('fonts/ABCMonumentGroteskSemiMono-Regular.woff2') format('woff2');
+  font-weight: bold;
+}
+@font-face {
+  font-family: 'Canela Condensed';
+  src: url('fonts/CanelaCondensed-Thin.otf') format('opentype');
+  font-weight: 300;
 }
 
-.nav-links a[data-icon="outward"]::before {
-    background-image: url('images/icons/arrow_outward.svg');
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+:root {
+  --mono: 'ABC Monument Grotesk Semi Mono', 'Courier New', monospace;
+  --serif: 'Canela Condensed', serif;
+  --chrome:    #d4d0c8;
+  --chrome-hi: #ffffff;
+  --chrome-sh: #808080;
+  --chrome-dk: #404040;
+  --title-bg:  #1a3a2a;
+  --title-txt: #e8eed8;
+  --glass-bg:  rgba(235, 240, 225, 0.52);
+  --glass-border: rgba(255,255,255,0.55);
+  --glass-inner:  rgba(255,255,255,0.25);
+  --blur: blur(18px);
+  --ink:       #1a2218;
+  --ink2:      #3d4e38;
+  --ink3:      #6a7a60;
+  --ink4:      #9aaa88;
+  --moss:      #3a6640;
+  --moss2:     #5a8a5a;
+  --sage:      #7aaa78;
+  --canela:    #2d5040;
+  --amber:     #7a6030;
+  --amber2:    #a07840;
+  --sb-track:  rgba(200,210,190,0.4);
 }
 
-        /* Cover screens */
-        .cover {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-size: cover;
-            background-position: center;
-            display: none;
-            z-index: 10;
-            opacity: 0;
-            transition: opacity 0.5s ease;
-        }
+html, body { width:100%; height:100%; overflow:hidden; font-family:var(--mono); font-size:12px; }
 
-        .cover.active {
-            display: block;
-            opacity: 1;
-        }
-
-        body.cover-active > *:not(.cover) {
-            filter: blur(5px);
-            transition: filter 0.5s ease;
-        }
-
-        .cover-content {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 1rem;
-        }
-
-        .cover-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to bottom, 
-                rgba(82, 139, 120, 0.721) 20%, 
-                rgba(40, 69, 59, 0.769) 100%);
-        }
-
-        .content-wrapper {
-            position: relative;
-            z-index: 2;
-            max-width: 1200px;
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 3rem;
-            color: white;
-        }
-
-        .content-section h2 {
-            font-family: 'ABCMonumentGrotesk', monospace;
-            font-size: 1rem;
-            letter-spacing: 0.1rem;
-            margin-bottom: 2rem;
-            text-transform: uppercase;
-        }
-
-        .content-section p {
-            font-size: 0.9rem;
-            line-height: 1.6;
-            margin-bottom: 1rem;
-            opacity: 0.95;
-        }
-
-        .content-section a {
-            color: white;
-            transition: opacity 0.3s ease;
-        }
-
-        .content-section a:hover {
-            opacity: 0.8;
-        }
-
-        .back-button {
-            position: absolute;
-            bottom: 3rem;
-            right: 3rem;
-            color: white;
-            text-decoration: none;
-            font-size: 0.9rem;
-            letter-spacing: 0.05rem;
-            opacity: 0.9;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            z-index: 3;
-        }
-
-        .back-button:hover {
-            opacity: 1;
-        }
-
-        
-.back-button::after {
-    content: '';
-    width: 16px;
-    height: 16px;
-    background-image: url('images/icons/keyboard_return.svg');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
+#desktop {
+  position:relative; width:100%; height:100vh;
+  overflow:hidden;
+  background: #3a6050;
 }
-        /* Work page specific */
-        .work-content {
-            position: relative;
-            z-index: 2;
-            text-align: center;
-            color: white;
-        }
-
-        .work-content h2 {
-            font-family: 'ABCMonumentGrotesk', monospace;
-            font-size: 1rem;
-            letter-spacing: 0.1rem;
-            margin-bottom: 2rem;
-            text-transform: uppercase;
-        }
-
-        .work-content p {
-            font-size: 0.9rem;
-            line-height: 1.6;
-            opacity: 0.95;
-        }
-
-        @media (max-width: 768px) {
-    h1 {
-        font-size: 3.5rem;
-    }
-    
-    /* Keep cover fixed and non-scrollable */
-    .cover {
-        overflow: hidden; /* Prevent scrolling */
-    }
-    
-    /* Make only the content wrapper scrollable */
-    .cover-content {
-        height: 100vh; /* Full viewport height */
-        overflow-y: auto; /* Enable scrolling on content only */
-        -webkit-overflow-scrolling: touch;
-        align-items: flex-start;
-        padding: 2rem 1.5rem 6rem;
-    }
-    
-    .content-wrapper {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-        margin-top: 2rem;
-    }
-    
-    .content-section {
-        padding-bottom: 1rem;
-    }
-    
-    .nav-links {
-        left: 1.5rem;
-        bottom: 1.5rem;
-    }
-    
-    .back-button {
-        position: fixed;
-        right: 1.5rem;
-        bottom: 1.5rem;
-        background: rgba(80, 140, 120, 0.9);
-        padding: 0.5rem 1rem;
-        border-radius: 2px;
-    }
-    
-    .work-content {
-        padding: 2rem 1.5rem;
-        text-align: center;
-    }
+#wallpaper {
+  position:absolute; inset:0;
+  background-image: url('images/background.jpg');
+  background-size:cover; background-position:center;
+  z-index:0;
 }
-    </style>
+
+#desktop-icons {
+  position:absolute; top:16px; left:16px;
+  display:flex; flex-direction:column; gap:16px;
+  z-index:5;
+}
+.desk-icon {
+  display:flex; flex-direction:column; align-items:center; gap:4px;
+  cursor:pointer; width:68px; text-align:center;
+}
+.icon-face {
+  width:40px; height:40px;
+  background: var(--chrome);
+  display:flex; align-items:center; justify-content:center;
+  font-size:20px;
+  box-shadow: 1px 1px 0 var(--chrome-hi) inset, -1px -1px 0 var(--chrome-sh) inset;
+}
+.desk-icon:active .icon-face {
+  box-shadow: -1px -1px 0 var(--chrome-hi) inset, 1px 1px 0 var(--chrome-sh) inset;
+}
+.desk-icon span {
+  font-size:10px; color:#fff; line-height:1.3;
+  text-shadow: 1px 1px 3px rgba(0,0,0,.7), 0 0 6px rgba(0,0,0,.5);
+}
+
+#taskbar {
+  position:absolute; bottom:0; left:0; right:0; height:28px;
+  background: var(--chrome);
+  border-top: 1px solid var(--chrome-hi);
+  box-shadow: 0 -1px 0 var(--chrome-sh);
+  display:flex; align-items:center; gap:3px; padding:2px 4px;
+  z-index:200;
+}
+#start-btn {
+  height:22px; padding:0 10px;
+  background:var(--chrome); border:none;
+  font-family:var(--mono); font-size:11px; font-weight:bold;
+  cursor:pointer; display:flex; align-items:center; gap:5px;
+  box-shadow: 1px 1px 0 var(--chrome-hi) inset, -1px -1px 0 var(--chrome-sh) inset;
+  color: var(--ink);
+}
+#start-btn:active { box-shadow: -1px -1px 0 var(--chrome-hi) inset, 1px 1px 0 var(--chrome-sh) inset; }
+.start-leaf { font-size:14px; }
+.tb-sep { width:1px; height:20px; background:var(--chrome-sh); box-shadow:1px 0 var(--chrome-hi); margin:0 2px; }
+.tb-btn {
+  height:22px; padding:0 8px;
+  background:var(--chrome); border:none;
+  font-family:var(--mono); font-size:10px; cursor:pointer;
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+  max-width:150px; text-align:left; color:var(--ink);
+}
+.tb-btn.active { box-shadow:-1px -1px 0 var(--chrome-hi) inset, 1px 1px 0 var(--chrome-sh) inset; background:#c4c0b8; }
+.tb-btn:not(.active) { box-shadow: 1px 1px 0 var(--chrome-hi) inset, -1px -1px 0 var(--chrome-sh) inset; }
+#tb-clock {
+  margin-left:auto; font-family:var(--mono); font-size:10px;
+  padding:1px 8px; color:var(--ink);
+  box-shadow:-1px -1px 0 var(--chrome-hi) inset, 1px 1px 0 var(--chrome-sh) inset;
+}
+
+.win-window {
+  position:absolute;
+  display:flex; flex-direction:column;
+  box-shadow:
+    1px 1px 0 var(--chrome-hi) inset,
+    -1px -1px 0 var(--chrome-sh) inset,
+    0 8px 32px rgba(0,0,0,.22),
+    0 2px 8px rgba(0,0,0,.14);
+  z-index:10;
+}
+.win-window.hidden { display:none !important; }
+.win-window.focused { z-index:20; }
+
+.win-titlebar {
+  height:22px; padding:0 3px;
+  background: var(--title-bg);
+  display:flex; align-items:center; gap:3px;
+  cursor:move; user-select:none; flex-shrink:0;
+}
+.win-titlebar.inactive { background:#7a8878; }
+.win-title-icon { font-size:12px; }
+.win-title-text {
+  flex:1; color:var(--title-txt);
+  font-family:var(--mono); font-size:11px; font-weight:bold;
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+  letter-spacing:.04em;
+}
+.win-controls { display:flex; gap:2px; }
+.win-btn {
+  width:16px; height:14px;
+  background:var(--chrome); border:none; cursor:pointer;
+  display:flex; align-items:center; justify-content:center;
+  font-size:8px; font-family:var(--mono); line-height:1; padding:0; color:var(--ink);
+  box-shadow: 1px 1px 0 var(--chrome-hi) inset, -1px -1px 0 var(--chrome-sh) inset;
+}
+.win-btn:active { box-shadow: -1px -1px 0 var(--chrome-hi) inset, 1px 1px 0 var(--chrome-sh) inset; }
+
+.win-menubar {
+  background:var(--chrome); border-bottom:1px solid var(--chrome-sh);
+  padding:1px 4px; display:flex; gap:0; flex-shrink:0;
+}
+.win-menu-item {
+  font-family:var(--mono); font-size:11px; padding:2px 7px;
+  cursor:pointer; color:var(--ink);
+}
+.win-menu-item:hover { background:var(--title-bg); color:var(--title-txt); }
+.win-toolbar {
+  background:var(--chrome); border-bottom:1px solid var(--chrome-sh);
+  padding:2px 4px; display:flex; align-items:center; gap:2px; flex-shrink:0;
+}
+.win-tb-btn {
+  height:22px; padding:0 7px;
+  background:var(--chrome); border:none; font-family:var(--mono); font-size:10px;
+  cursor:pointer; color:var(--ink);
+  box-shadow:1px 1px 0 var(--chrome-hi) inset,-1px -1px 0 var(--chrome-sh) inset;
+  white-space:nowrap;
+}
+.win-tb-btn:active { box-shadow:-1px -1px 0 var(--chrome-hi) inset,1px 1px 0 var(--chrome-sh) inset; background:#c4c0b8; }
+.tb-line { width:1px; height:20px; background:var(--chrome-sh); box-shadow:1px 0 var(--chrome-hi); margin:0 2px; }
+
+.win-addrbar {
+  display:flex; align-items:center; gap:6px;
+  padding:2px 4px; border-bottom:1px solid var(--chrome-sh);
+  background:var(--chrome); flex-shrink:0;
+}
+.win-addrbar label { font-family:var(--mono); font-size:10px; color:var(--ink); white-space:nowrap; }
+.win-addrbar input {
+  flex:1; height:18px;
+  border:1px solid var(--chrome-sh);
+  box-shadow:-1px -1px 0 var(--chrome-hi) inset;
+  font-family:var(--mono); font-size:10px; padding:0 4px;
+  background:rgba(255,255,255,.85); color:var(--ink); outline:none;
+}
+
+.glass-body {
+  flex:1; display:flex; overflow:hidden;
+  background: var(--glass-bg);
+  backdrop-filter: var(--blur);
+  -webkit-backdrop-filter: var(--blur);
+  border-top:1px solid var(--glass-border);
+}
+
+.glass-body ::-webkit-scrollbar { width:14px; }
+.glass-body ::-webkit-scrollbar-track {
+  background:rgba(200,210,185,.4);
+  border-left:1px solid rgba(255,255,255,.3);
+}
+.glass-body ::-webkit-scrollbar-thumb {
+  background:var(--chrome);
+  box-shadow:1px 1px 0 var(--chrome-hi) inset,-1px -1px 0 var(--chrome-sh) inset;
+  min-height:20px;
+}
+.glass-body ::-webkit-scrollbar-button {
+  background:var(--chrome);
+  box-shadow:1px 1px 0 var(--chrome-hi) inset,-1px -1px 0 var(--chrome-sh) inset;
+  height:14px; display:block;
+}
+
+.win-statusbar {
+  background:var(--chrome); border-top:1px solid var(--chrome-hi);
+  height:22px; display:flex; align-items:center; padding:0 4px; gap:2px; flex-shrink:0;
+}
+.sb-cell {
+  height:16px; padding:0 8px;
+  font-family:var(--mono); font-size:10px; color:var(--ink-2);
+  border:1px solid var(--chrome-sh); box-shadow:-1px -1px 0 var(--chrome-hi) inset;
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis; color:var(--ink2);
+}
+.sb-cell:first-child { flex:1; }
+
+#win-sidebar {
+  width:190px; min-width:190px;
+  background: rgba(210,225,200,0.35);
+  backdrop-filter: var(--blur);
+  -webkit-backdrop-filter: var(--blur);
+  border-right:1px solid rgba(255,255,255,.5);
+  overflow-y:auto; overflow-x:hidden; flex-shrink:0;
+  transition:width .2s,min-width .2s;
+}
+#win-sidebar.collapsed { width:0; min-width:0; }
+#win-sidebar::-webkit-scrollbar { width:6px; }
+#win-sidebar::-webkit-scrollbar-thumb { background:rgba(100,130,90,.3); }
+
+.sb-drive {
+  display:flex; align-items:center; gap:5px;
+  padding:7px 10px 5px;
+  color:var(--ink3); font-size:10px; letter-spacing:.1em;
+  border-bottom:1px solid rgba(255,255,255,.4);
+}
+.sb-drive b { color:var(--moss); }
+
+.folder { user-select:none; }
+.folder-label {
+  display:flex; align-items:center; gap:4px;
+  padding:5px 10px; cursor:pointer;
+  color:var(--ink2); font-size:11px;
+  white-space:nowrap; overflow:hidden;
+}
+.folder-label:hover { background:rgba(255,255,255,.3); color:var(--canela); }
+.f-arrow { color:var(--ink4); width:8px; font-size:9px; transition:transform .15s; flex-shrink:0; }
+.folder.open > .folder-label > .f-arrow { transform:rotate(90deg); }
+.f-icon { color:var(--moss2); font-size:11px; flex-shrink:0; }
+.folder-children { display:none; padding-left:14px; }
+.folder.open > .folder-children { display:block; }
+
+.file-entry {
+  display:flex; align-items:center; gap:4px;
+  padding:4px 10px; cursor:pointer;
+  color:var(--ink3); font-size:11px;
+  white-space:nowrap; overflow:hidden;
+  border-left:2px solid transparent;
+}
+.file-entry:hover { color:var(--ink); background:rgba(255,255,255,.25); }
+.file-entry.active {
+  color:var(--canela); border-left:2px solid var(--moss);
+  background:rgba(255,255,255,.35);
+}
+.fe-icon { color:var(--amber2); font-size:9px; flex-shrink:0; }
+
+#win-content {
+  flex:1; overflow-y:auto; overflow-x:hidden;
+  padding:0;
+}
+
+/* loading state */
+.doc-loading {
+  display:flex; align-items:center; justify-content:center;
+  height:100%; color:var(--ink4); font-size:11px; letter-spacing:.12em;
+}
+.doc-error {
+  padding:28px 32px; color:var(--amber2); font-size:11px; line-height:1.8;
+}
+
+.splash {
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  height:100%; min-height:300px; gap:8px; padding:24px;
+  color:var(--ink3);
+}
+.splash-logo {
+  font-family:var(--serif); font-size:42px; font-weight:300;
+  color:var(--canela); letter-spacing:.12em; line-height:1;
+}
+.splash-sub { font-size:10px; letter-spacing:.2em; color:var(--ink3); margin-top:4px; }
+.splash-rule {
+  width:48px; height:1px;
+  background:rgba(0, 0, 0, 0.25); margin:8px 0;
+}
+.splash-hint { font-size:10px; color:var(--ink3); opacity:.7; }
+
+.doc-view { padding:28px 32px; max-width:700px; }
+.doc-title {
+  font-family:var(--serif); font-size:34px; font-weight:300;
+  color:var(--canela); letter-spacing:.06em; line-height:1.15; margin-bottom:5px;
+}
+.doc-meta { color:var(--ink3); font-size:10px; letter-spacing:.1em; margin-bottom:16px; }
+.doc-tags { display:flex; flex-wrap:wrap; gap:4px; margin-bottom:22px; }
+.doc-tag {
+  background:rgba(90,138,90,.12); color:var(--moss);
+  border:1px solid rgba(90,138,90,.35);
+  padding:2px 8px; font-size:10px; letter-spacing:.06em;
+}
+.doc-body { color:var(--ink2); line-height:1.9; font-size:12px; }
+.doc-body p { margin-bottom:14px; }
+.doc-body h3 {
+  color:var(--moss); font-size:10px; letter-spacing:.18em;
+  text-transform:uppercase; margin:24px 0 8px; font-weight:bold;
+}
+.doc-body em { color:var(--canela); font-style:italic; }
+.doc-body a { color:var(--amber2); text-decoration:none; border-bottom:1px solid rgba(160,120,64,.35); }
+.doc-body a:hover { border-bottom-color:var(--amber2); }
+.doc-body ul { margin:0 0 14px 18px; }
+.doc-body li { margin-bottom:4px; }
+
+.about-glass {
+  flex:1; overflow-y:auto; padding:28px 32px;
+  background:var(--glass-bg);
+  backdrop-filter:var(--blur); -webkit-backdrop-filter:var(--blur);
+  border-top:1px solid var(--glass-border);
+}
+.about-title {
+  font-family:var(--serif); font-size:36px; font-weight:300;
+  color:var(--canela); letter-spacing:.1em; margin-bottom:4px;
+}
+.about-sub { color:var(--ink3); font-size:10px; letter-spacing:.14em; margin-bottom:28px; }
+.about-grid { display:grid; grid-template-columns:1fr 1fr; gap:28px; }
+.about-section h3 {
+  color:var(--moss); font-size:10px; letter-spacing:.18em;
+  text-transform:uppercase; margin-bottom:10px; font-weight:bold;
+}
+.about-section p { color:var(--ink2); font-size:12px; line-height:1.85; margin-bottom:10px; }
+.about-section em { color:var(--canela); font-style:italic; }
+.about-section a { color:var(--amber2); text-decoration:none; border-bottom:1px solid rgba(160,120,64,.35); }
+
+.notepad-glass {
+  flex:1; overflow:hidden;
+  background:rgba(245,248,238,.7);
+  backdrop-filter:var(--blur); -webkit-backdrop-filter:var(--blur);
+  border-top:1px solid var(--glass-border);
+}
+.notepad-glass textarea {
+  width:100%; height:100%; border:none; outline:none; resize:none;
+  background:transparent; color:var(--ink);
+  font-family:var(--mono); font-size:12px; padding:8px; line-height:1.7;
+}
+
+#start-menu {
+  position:absolute; bottom:28px; left:0; width:210px;
+  display:none; flex-direction:row;
+  box-shadow:2px 2px 0 var(--chrome-hi) inset,-2px -2px 0 var(--chrome-sh) inset,4px 4px 20px rgba(0,0,0,.25);
+  z-index:300;
+}
+#start-menu.open { display:flex; }
+.sm-rail {
+  width:26px; background:var(--title-bg);
+  display:flex; align-items:flex-end; justify-content:center; padding-bottom:6px;
+}
+.sm-rail span {
+  color:rgba(232,238,216,.6); font-family:var(--mono); font-size:10px;
+  writing-mode:vertical-rl; transform:rotate(180deg); letter-spacing:.12em;
+}
+.sm-items {
+  flex:1; padding:4px 0;
+  background:rgba(230,238,218,.8);
+  backdrop-filter:var(--blur); -webkit-backdrop-filter:var(--blur);
+}
+.sm-item {
+  display:flex; align-items:center; gap:8px;
+  padding:6px 12px; cursor:pointer;
+  font-family:var(--mono); font-size:11px; color:var(--ink);
+}
+.sm-item:hover { background:var(--title-bg); color:var(--title-txt); }
+.sm-icon { font-size:15px; width:20px; text-align:center; }
+.sm-sep { height:1px; background:rgba(100,130,80,.25); margin:3px 6px; }
+
+.win-window.dragging { opacity:.97; }
+
+#desktop-title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  pointer-events: none;
+  z-index: 1;
+  white-space: nowrap;
+}
+#desktop-title h1 {
+  font-family: 'Canela Condensed', serif;
+  font-weight: 300;
+  font-size: 6.5rem;
+  letter-spacing: 0.1rem;
+  color: white;
+  line-height: 1;
+}
+#desktop-title p {
+  font-family: 'ABC Monument Grotesk Semi Mono', 'Courier New', monospace;
+  font-size: 1.05rem;
+  letter-spacing: 0.06rem;
+  color: rgba(255,255,255,0.75);
+  margin-top: 0.6rem;
+}
+
+/* ── PDA INTERFACE (hidden on desktop) ── */
+#pda {
+  display: none;
+  flex-direction: column;
+  width: 100%; height: 100vh;
+  overflow: hidden;
+  position: relative;
+  font-family: var(--mono);
+  font-size: 13px;
+}
+#pda-wallpaper {
+  position: absolute; inset: 0;
+  background-image: url('images/background.jpg');
+  background-size: cover; background-position: center;
+  z-index: 0;
+}
+
+/* header */
+#pda-header {
+  position: relative; z-index: 10; flex-shrink: 0;
+  background: var(--title-bg);
+  border-bottom: 2px solid rgba(255,255,255,.15);
+  padding: 12px 18px 10px;
+  display: flex; flex-direction: column;
+}
+#pda-logo {
+  font-family: var(--serif);
+  font-size: 2rem; font-weight: 300;
+  color: var(--title-txt); letter-spacing: .1em; line-height: 1;
+}
+#pda-crumb {
+  font-size: 10px; letter-spacing: .16em;
+  color: rgba(232,238,216,.5); margin-top: 4px;
+}
+
+/* panel container */
+#pda-content {
+  flex: 1; position: relative; overflow: hidden; z-index: 5;
+}
+.pda-panel {
+  position: absolute; inset: 0;
+  overflow-y: auto; overflow-x: hidden;
+  display: none;
+  background: var(--glass-bg);
+  backdrop-filter: var(--blur);
+  -webkit-backdrop-filter: var(--blur);
+}
+.pda-panel.active { display: block; }
+
+/* archive folder tree */
+.pda-folder { user-select: none; }
+.pda-folder-label {
+  display: flex; align-items: center; gap: 10px;
+  padding: 16px 18px;
+  border-bottom: 1px solid rgba(255,255,255,.14);
+  cursor: pointer; font-size: 13px; color: var(--ink2);
+}
+.pda-folder-label:active { background: rgba(255,255,255,.15); }
+.pda-f-arrow { color: var(--ink4); font-size: 10px; transition: transform .15s; flex-shrink: 0; }
+.pda-folder.open > .pda-folder-label > .pda-f-arrow { transform: rotate(90deg); }
+.pda-f-icon { color: var(--moss2); font-size: 17px; }
+.pda-folder-children { display: none; background: rgba(0,0,0,.07); }
+.pda-folder.open > .pda-folder-children { display: block; }
+.pda-file {
+  display: flex; align-items: center; gap: 10px;
+  padding: 14px 18px 14px 42px;
+  border-bottom: 1px solid rgba(255,255,255,.09);
+  cursor: pointer; font-size: 13px; color: var(--ink3);
+}
+.pda-file:active { background: rgba(255,255,255,.2); }
+.pda-file-icon { color: var(--amber2); font-size: 12px; }
+
+/* doc view */
+#pda-back {
+  display: flex; align-items: center; gap: 8px;
+  padding: 14px 18px;
+  border-bottom: 1px solid rgba(255,255,255,.18);
+  cursor: pointer; font-size: 12px; color: var(--ink2);
+  background: rgba(255,255,255,.1);
+  letter-spacing: .06em; flex-shrink: 0;
+  position: sticky; top: 0; z-index: 2;
+}
+.pda-doc-inner { padding: 22px 18px 48px; }
+.pda-doc-title {
+  font-family: var(--serif); font-size: 2rem; font-weight: 300;
+  color: var(--canela); letter-spacing: .06em; line-height: 1.15; margin-bottom: 4px;
+}
+.pda-doc-meta { color: var(--ink3); font-size: 10px; letter-spacing: .1em; margin-bottom: 14px; }
+.pda-doc-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 18px; }
+.pda-doc-body { color: var(--ink2); line-height: 1.85; font-size: 13px; }
+.pda-doc-body p { margin-bottom: 14px; }
+.pda-doc-body h3 {
+  color: var(--moss); font-size: 11px; letter-spacing: .16em;
+  text-transform: uppercase; margin: 22px 0 8px; font-weight: bold;
+}
+.pda-doc-body em { color: var(--canela); font-style: italic; }
+.pda-doc-body a { color: var(--amber2); text-decoration: none; border-bottom: 1px solid rgba(160,120,64,.35); }
+
+/* about & contact panels */
+.pda-section { padding: 22px 18px 48px; }
+.pda-section-title {
+  font-family: var(--serif); font-size: 1.8rem; font-weight: 300;
+  color: var(--canela); letter-spacing: .08em; margin-bottom: 5px;
+}
+.pda-section-sub { color: var(--ink3); font-size: 10px; letter-spacing: .14em; margin-bottom: 26px; }
+.pda-section h3 {
+  color: var(--moss); font-size: 10px; letter-spacing: .16em;
+  text-transform: uppercase; margin: 22px 0 8px; font-weight: bold;
+}
+.pda-section p { color: var(--ink2); font-size: 13px; line-height: 1.85; margin-bottom: 10px; }
+.pda-section em { color: var(--canela); font-style: italic; }
+.pda-section a { color: var(--amber2); text-decoration: none; border-bottom: 1px solid rgba(160,120,64,.35); }
+
+/* home overlay (visible when no panel is active) */
+#pda-home {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  pointer-events: none;
+  z-index: 1;
+  width: calc(100% - 20px);
+}
+#pda-home h1 {
+  font-family: 'Canela Condensed', serif;
+  font-weight: 300; font-size: 3.8rem;
+  letter-spacing: 0.1rem; color: white; line-height: 1;
+}
+#pda-home p {
+  font-family: var(--mono);
+  font-size: 0.82rem; letter-spacing: 0.05rem;
+  color: rgba(255,255,255,0.72); margin-top: 0.6rem;
+}
+
+/* bottom nav */
+#pda-nav {
+  position: relative; z-index: 10; flex-shrink: 0;
+  height: 56px;
+  background: var(--chrome);
+  border-top: 2px solid var(--chrome-hi);
+  display: flex;
+}
+.pda-nav-btn {
+  flex: 1; height: 100%; border: none; cursor: pointer;
+  font-family: var(--mono); font-size: 10px; letter-spacing: .07em;
+  background: var(--chrome); color: var(--ink);
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;
+  box-shadow: 1px 1px 0 var(--chrome-hi) inset, -1px -1px 0 var(--chrome-sh) inset;
+  border-right: 1px solid var(--chrome-sh);
+}
+.pda-nav-btn:last-child { border-right: none; }
+.pda-nav-btn.active {
+  background: #c4c0b8;
+  box-shadow: -1px -1px 0 var(--chrome-hi) inset, 1px 1px 0 var(--chrome-sh) inset;
+}
+.pda-nav-icon { font-size: 20px; }
+
+/* ── MOBILE: swap desktop → PDA ── */
+@media (max-width: 768px) {
+  #desktop { display: none; }
+  #pda     { display: flex; }
+}
+</style>
 </head>
 <body>
-    <div class="background"></div>
-    <div class="overlay"></div>
-    
-    <div class="container">
-        <h1>POSTHUMAN DOCS</h1>
-        <p class="subtitle">a studio by filmmaker and researcher Kylian Weijers dedicated to new ways of seeing, being and becoming</p>
-        
-        <nav class="nav-links">
-            <a href="#" id="about-link" data-icon="forward"><span>read more about the studio</span></a>
-            <a href="#" id="work-link" data-icon="forward"><span>explore the work</span></a>
-            <a href="mailto:kylian@posthmndocs.com" data-icon="outward"><span>get in touch</span></a>
-        </nav>
-    </div>
 
-    <!-- About Cover -->
-    <div id="about-cover" class="cover">
-        <div class="cover-overlay"></div>
-        <div class="cover-content">
-            <div class="content-wrapper">
-                <section class="content-section">
-                    <h2>MISSION</h2>
-                    <p>Hi, I'm Kylian Weijers: Amsterdam-based filmmaker, editor and researcher. Posthuman Docs is my studio of documentary practice and research – my field station, if you will. It's where I explore how film can function not only as a reflection of the world, but as a tool that reshapes how we relate: to ourselves, to others, and to the more-than-human.</p>
-                    <p>I work from a posthumanist and feminist perspective. That means I question who gets to speak, who gets seen, and how narratives might unfold beyond the grip of the dominant gaze.</p>
-                    <p>I challenge extractive modes of storytelling by grounding my practice in research, deep listening, and collective inquiry; always seeking to multiply perspectives and generate new forms of relational knowledge.</p>
-                </section>
-                
-                <section class="content-section">
-                    <h2>POSTHUMANISM</h2>
-                    <p>I work with posthuman and feminist thought to reconfigure what stories are, how they come into being, and who they serve.</p>
-                    <p>Posthumanism asks us to move beyond the idea of the human as the central subject of the world – and instead to see life as entangled, shifting, and collective. This isn't just about communities, animals, machines or nature, but about how we think, feel, and relate in a world shaped by histories of colonialism, capitalism, and technological power.</p>
-                    <p>In practice, this means working from the inside-out and approaching one another not as objects of study, but engaging from shared positions and always questioning: <em>Who speaks? Who listens? What worlds are made in the process?</em></p>
-                </section>
-                
-                <section class="content-section">
-                    <h2>WORK</h2>
-                    <p>Posthuman Docs brings together nearly a decade of interdisciplinary media practice with critical research. I hold a Master's degree in Documentary & Fiction from the University of Amsterdam, where I wrote on documentary ethics, posthumanism, and identity (co)construction within the filmmaker-participant relationship.</p>
-                    <p>Through film, installation, and digital forms, I create work that blurs the lines between documentary and ritual, research and imagination. I'm drawn to stories that move between the personal and the collective – especially those that make visible what is often overlooked, misread, or misunderstood.</p>
-                    <p>→ Posthuman Docs is a process of becoming; unfolding and transforming. If these ideas resonate with you or you would like to collaborate, I'd love to hear from you. In the meantime, explore some of my work at <a href="https://kylianweijers.com">kylianweijers.com</a>.</p>
-                </section>
-            </div>
-            <a href="#" class="back-button" id="about-back">go back</a>
+<div id="desktop">
+  <div id="wallpaper"></div>
+
+  <div id="desktop-title">
+    <h1>POSTHUMAN DOCS</h1>
+    <p>a studio by filmmaker and researcher Kylian Weijers dedicated to new ways of seeing, being and becoming</p>
+  </div>
+
+  <div id="desktop-icons">
+    <div class="desk-icon" ondblclick="openWin('w-archive')">
+      <div class="icon-face">🗄</div>
+      <span>Archive</span>
+    </div>
+    <div class="desk-icon" ondblclick="openWin('w-about')">
+      <div class="icon-face">📄</div>
+      <span>About</span>
+    </div>
+    <div class="desk-icon" ondblclick="openWin('w-contact')">
+      <div class="icon-face">📝</div>
+      <span>Contact</span>
+    </div>
+  </div>
+
+  <!-- ARCHIVE WINDOW -->
+  <div id="w-archive" class="win-window focused" style="top:36px;left:80px;width:840px;height:560px">
+    <div class="win-titlebar" id="tb-w-archive">
+      <span class="win-title-icon">🗄</span>
+      <span class="win-title-text">Posthuman Docs — Archive</span>
+      <div class="win-controls">
+        <button class="win-btn" onclick="minWin('w-archive')">_</button>
+        <button class="win-btn" onclick="maxWin('w-archive')">□</button>
+        <button class="win-btn" onclick="closeWin('w-archive')" style="font-weight:bold">✕</button>
+      </div>
+    </div>
+    <div class="win-menubar">
+      <span class="win-menu-item">File</span>
+      <span class="win-menu-item">Edit</span>
+      <span class="win-menu-item">View</span>
+      <span class="win-menu-item">Help</span>
+    </div>
+    <div class="win-toolbar">
+      <button class="win-tb-btn" onclick="goBack()">◀ Back</button>
+      <button class="win-tb-btn">Forward ▶</button>
+      <div class="tb-line"></div>
+      <button class="win-tb-btn" onclick="toggleSidebar()">☰ Sidebar</button>
+      <div class="tb-line"></div>
+      <button class="win-tb-btn" onclick="openWin('w-about')">📄 About</button>
+      <button class="win-tb-btn" onclick="openWin('w-contact')">✉ Contact</button>
+    </div>
+    <div class="win-addrbar">
+      <label>Address</label>
+      <input type="text" id="addrbar" value="C:\POSTHUMAN\ARCHIVE\" readonly>
+    </div>
+    <div class="glass-body" style="flex:1;overflow:hidden">
+      <div id="win-sidebar">
+        <div class="sb-drive"><b>⬡</b>&nbsp;ARCHIVE ROOT</div>
+
+        <div class="folder open" id="f-projects">
+          <div class="folder-label" onclick="toggleF('f-projects')">
+            <span class="f-arrow">▶</span><span class="f-icon">📁</span>PROJECTS
+          </div>
+          <div class="folder-children">
+            <div class="file-entry" onclick="openDoc('fibres')"><span class="fe-icon">◈</span>fibres.md</div>
+            <div class="file-entry" onclick="openDoc('voor-altijd-door')"><span class="fe-icon">◈</span>voor-altijd-door.md</div>
+          </div>
         </div>
-    </div>
 
-    <!-- Work Cover -->
-    <div id="work-cover" class="cover">
-        <div class="cover-overlay"></div>
-        <div class="cover-content">
-            <div class="work-content">
-                <h2>WORK</h2>
-                <p>Oh no! It appears that this space is still taking shape.<br>
-                We're in the process of uploading current and recent projects.</p>
-            </div>
-            <a href="#" class="back-button" id="work-back">go back</a>
+        <div class="folder" id="f-theory">
+          <div class="folder-label" onclick="toggleF('f-theory')">
+            <span class="f-arrow">▶</span><span class="f-icon">📁</span>THEORY
+          </div>
+          <div class="folder-children">
+            <div class="file-entry" onclick="openDoc('posthumanism')"><span class="fe-icon">◈</span>posthumanism.md</div>
+           <!-- <div class="file-entry" onclick="openDoc('documentary-form')"><span class="fe-icon">◈</span>documentary-form.md</div> -->
+          </div>
         </div>
+
+        <div class="folder" id="f-field">
+          <div class="folder-label" onclick="toggleF('f-field')">
+            <span class="f-arrow">▶</span><span class="f-icon">📁</span>FIELD NOTES
+          </div>
+          <div class="folder-children">
+            <!-- <div class="file-entry" onclick="openDoc('body-as-archive')"><span class="fe-icon">◈</span>body-as-archive.md</div> -->
+          </div>
+        </div>
+
+        <div class="folder" id="f-media">
+          <div class="folder-label" onclick="toggleF('f-media')">
+            <span class="f-arrow">▶</span><span class="f-icon">📁</span>MEDIA
+          </div>
+          <div class="folder-children">
+            <div class="file-entry" onclick="openDoc('kylianweijers')"><span class="fe-icon">◉</span>kylianweijers.com</div>
+          </div>
+        </div>
+      </div>
+
+      <div id="sidebar-resize" style="width:4px;cursor:col-resize;background:transparent;flex-shrink:0"></div>
+
+      <div id="win-content">
+        <div class="splash" id="splash">
+          <div class="splash-logo">POSTHUMAN DOCS</div>
+
+          <div class="splash-sub">WELCOME USER</div>
+          <div class="splash-hint">select a file from the archive</div>
+        </div>
+      </div>
+    </div>
+    <div class="win-statusbar">
+      <div class="sb-cell" id="sb-text">Ready</div>
+      <div class="sb-cell">8 objects</div>
+      <div class="sb-cell" id="sb-size">—</div>
+    </div>
+  </div>
+
+  <!-- ABOUT WINDOW -->
+  <div id="w-about" class="win-window hidden" style="top:60px;left:160px;width:700px;height:520px">
+    <div class="win-titlebar" id="tb-w-about">
+      <span class="win-title-icon">📄</span>
+      <span class="win-title-text">About — Posthuman Docs</span>
+      <div class="win-controls">
+        <button class="win-btn" onclick="minWin('w-about')">_</button>
+        <button class="win-btn" onclick="maxWin('w-about')">□</button>
+        <button class="win-btn" onclick="closeWin('w-about')" style="font-weight:bold">✕</button>
+      </div>
+    </div>
+    <div class="win-menubar">
+      <span class="win-menu-item">File</span>
+      <span class="win-menu-item">View</span>
+    </div>
+    <div class="about-glass">
+      <div class="about-title">POSTHUMAN DOCS</div>
+      <div class="about-sub">// a studio by filmmaker and researcher Kylian Weijers</div>
+      <div class="about-grid">
+        <div class="about-section">
+          <h3>Mission</h3>
+          <p>Hi, I'm Kylian Weijers: Amsterdam-based filmmaker, editor and researcher. Posthuman Docs is my studio of documentary practice and research — my field station. It's where I explore how film can function not only as a reflection of the world, but as a tool that reshapes how we relate: to ourselves, to others, and to the more-than-human.</p>
+          <p>I work from a posthumanist and feminist perspective. That means I question who gets to speak, who gets seen, and how narratives might unfold beyond the grip of the dominant gaze.</p>
+        </div>
+        <div class="about-section">
+          <h3>Posthumanism</h3>
+          <p>I work with posthuman and feminist thought to reconfigure what stories are, how they come into being, and who they serve.</p>
+          <p>In practice, this means working from the inside-out. Always questioning: <em>Who speaks? Who listens? What worlds are made in the process?</em></p>
+        </div>
+        <div class="about-section">
+          <h3>Background</h3>
+          <p>I hold a Master's in Documentary & Fiction from the University of Amsterdam, where I wrote on documentary ethics, posthumanism, and identity (co)construction within the filmmaker-participant relationship.</p>
+        </div>
+        <div class="about-section">
+          <h3>Collaborate</h3>
+          <p>Posthuman Docs is a process of becoming — unfolding and transforming. If these ideas resonate with you or you would like to collaborate, I'd love to hear from you.</p>
+          <p>→ <a href="mailto:kylian@posthmndocs.com">kylian@posthmndocs.com</a><br>
+          → <a href="https://kylianweijers.com" target="_blank">kylianweijers.com</a></p>
+        </div>
+      </div>
+    </div>
+    <div class="win-statusbar">
+      <div class="sb-cell">about.txt</div>
+    </div>
+  </div>
+
+  <!-- CONTACT WINDOW -->
+  <div id="w-contact" class="win-window hidden" style="top:110px;left:260px;width:420px;height:300px">
+    <div class="win-titlebar" id="tb-w-contact">
+      <span class="win-title-icon">📝</span>
+      <span class="win-title-text">Contact — Notepad</span>
+      <div class="win-controls">
+        <button class="win-btn" onclick="minWin('w-contact')">_</button>
+        <button class="win-btn" onclick="maxWin('w-contact')">□</button>
+        <button class="win-btn" onclick="closeWin('w-contact')" style="font-weight:bold">✕</button>
+      </div>
+    </div>
+    <div class="win-menubar">
+      <span class="win-menu-item">File</span>
+      <span class="win-menu-item">Edit</span>
+    </div>
+    <div class="notepad-glass">
+      <textarea readonly>// CONTACT — POSTHUMAN DOCS
+
+Email:    kylian@posthmndocs.com
+Web:      kylianweijers.com
+
+For collaboration, research,
+screenings, or just a conversation:
+
+→ reach out via email
+→ explore work at kylianweijers.com
+
+"Posthuman Docs is a process of
+becoming — unfolding and transforming."</textarea>
+    </div>
+  </div>
+
+  <!-- TASKBAR -->
+  <div id="taskbar">
+    <button id="start-btn" onclick="toggleStart()">
+      <span class="start-leaf">🌿</span> Start
+    </button>
+    <div class="tb-sep"></div>
+    <button class="tb-btn active" id="tbb-w-archive" onclick="tbClick('w-archive')">🗄 Archive</button>
+    <button class="tb-btn" id="tbb-w-about" onclick="tbClick('w-about')" style="display:none">📄 About</button>
+    <button class="tb-btn" id="tbb-w-contact" onclick="tbClick('w-contact')" style="display:none">📝 Contact</button>
+    <div id="tb-clock" class="sb-cell" style="margin-left:auto">00:00</div>
+  </div>
+
+  <!-- START MENU -->
+  <div id="start-menu">
+    <div class="sm-rail"><span>PSTHMN</span></div>
+    <div class="sm-items">
+      <div class="sm-item" onclick="openWin('w-archive');closeStart()"><span class="sm-icon">🗄</span>Archive</div>
+      <div class="sm-item" onclick="openWin('w-about');closeStart()"><span class="sm-icon">📄</span>About</div>
+      <div class="sm-item" onclick="openWin('w-contact');closeStart()"><span class="sm-icon">📝</span>Contact</div>
+      <div class="sm-sep"></div>
+      <div class="sm-item" onclick="window.open('https://kylianweijers.com');closeStart()"><span class="sm-icon">🌐</span>kylianweijers.com</div>
+      <div class="sm-sep"></div>
+      <div class="sm-item" onclick="closeStart()"><span class="sm-icon">✕</span>Close Menu</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── PDA INTERFACE ── -->
+<div id="pda">
+  <div id="pda-wallpaper"></div>
+
+  <div id="pda-header">
+    <div id="pda-logo">POSTHUMAN DOCS</div>
+    <div id="pda-crumb">ARCHIVE</div>
+  </div>
+
+  <div id="pda-content">
+
+    <div id="pda-home">
+      <h1>POSTHUMAN DOCS</h1>
+      <p>a studio by filmmaker and researcher Kylian Weijers<br>dedicated to new ways of seeing, being and becoming</p>
     </div>
 
-    <script>
-        // Handle navigation
-        const aboutLink = document.getElementById('about-link');
-        const workLink = document.getElementById('work-link');
-        const aboutCover = document.getElementById('about-cover');
-        const workCover = document.getElementById('work-cover');
-        const aboutBack = document.getElementById('about-back');
-        const workBack = document.getElementById('work-back');
+    <!-- Archive panel -->
+    <div id="pda-archive" class="pda-panel">
+      <div class="pda-folder open" id="pf-projects">
+        <div class="pda-folder-label" onclick="togglePF('pf-projects')">
+          <span class="pda-f-arrow">▶</span><span class="pda-f-icon">📁</span>PROJECTS
+        </div>
+        <div class="pda-folder-children">
+          <div class="pda-file" onclick="pdaOpenDoc('fibres')"><span class="pda-file-icon">◈</span>fibres.md</div>
+          <div class="pda-file" onclick="pdaOpenDoc('alteregotistical')"><span class="pda-file-icon">◈</span>alteregotistical.md</div>
+          <div class="pda-file" onclick="pdaOpenDoc('voor-altijd-door')"><span class="pda-file-icon">◈</span>voor-altijd-door.md</div>
+        </div>
+      </div>
+      <div class="pda-folder" id="pf-theory">
+        <div class="pda-folder-label" onclick="togglePF('pf-theory')">
+          <span class="pda-f-arrow">▶</span><span class="pda-f-icon">📁</span>THEORY
+        </div>
+        <div class="pda-folder-children">
+          <div class="pda-file" onclick="pdaOpenDoc('manifesto')"><span class="pda-file-icon">◈</span>manifesto.md</div>
+          <div class="pda-file" onclick="pdaOpenDoc('posthumanism')"><span class="pda-file-icon">◈</span>posthumanism.md</div>
+        </div>
+      </div>
+      <div class="pda-folder" id="pf-field">
+        <div class="pda-folder-label" onclick="togglePF('pf-field')">
+          <span class="pda-f-arrow">▶</span><span class="pda-f-icon">📁</span>FIELD NOTES
+        </div>
+        <div class="pda-folder-children">
+          <div class="pda-file" style="color:var(--ink4);font-size:11px;padding-left:48px"><span class="pda-file-icon">—</span>coming soon</div>
+        </div>
+      </div>
+      <div class="pda-folder" id="pf-media">
+        <div class="pda-folder-label" onclick="togglePF('pf-media')">
+          <span class="pda-f-arrow">▶</span><span class="pda-f-icon">📁</span>MEDIA
+        </div>
+        <div class="pda-folder-children">
+          <div class="pda-file" onclick="pdaOpenDoc('kylianweijers')"><span class="pda-file-icon">◉</span>kylianweijers.com</div>
+        </div>
+      </div>
+    </div>
 
-        // Update your existing event listeners
-aboutLink.addEventListener('click', (e) => {
-    e.preventDefault();
-    document.body.classList.add('cover-active');
-    aboutCover.style.display = 'block';
-    setTimeout(() => aboutCover.classList.add('active'), 10);
+    <!-- Doc view panel -->
+    <div id="pda-docview" class="pda-panel">
+      <div id="pda-back" onclick="pdaBack()">◀ back to archive</div>
+      <div id="pda-doc-content" class="pda-doc-inner"></div>
+    </div>
+
+    <!-- About panel -->
+    <div id="pda-about" class="pda-panel">
+      <div class="pda-section">
+        <div class="pda-section-title">POSTHUMAN DOCS</div>
+        <div class="pda-section-sub">// a studio by filmmaker and researcher Kylian Weijers</div>
+        <h3>Mission</h3>
+        <p>Hi, I'm Kylian Weijers: Amsterdam-based filmmaker, editor and researcher. Posthuman Docs is my studio of documentary practice and research — my field station. It's where I explore how film can function not only as a reflection of the world, but as a tool that reshapes how we relate: to ourselves, to others, and to the more-than-human.</p>
+        <p>I work from a posthumanist and feminist perspective. That means I question who gets to speak, who gets seen, and how narratives might unfold beyond the grip of the dominant gaze.</p>
+        <h3>Posthumanism</h3>
+        <p>I work with posthuman and feminist thought to reconfigure what stories are, how they come into being, and who they serve. Posthumanism asks us to move beyond the idea of the human as the central subject — and instead to see life as entangled, shifting, and collective.</p>
+        <p>In practice, this means working from the inside-out. Always questioning: <em>Who speaks? Who listens? What worlds are made in the process?</em></p>
+        <h3>Background</h3>
+        <p>I hold a Master's degree in Documentary & Fiction from the University of Amsterdam, where I wrote on documentary ethics, posthumanism, and identity (co)construction within the filmmaker-participant relationship.</p>
+        <p>Through film, installation, and digital forms, I create work that blurs the lines between documentary and ritual, research and imagination.</p>
+        <h3>Collaborate</h3>
+        <p>Posthuman Docs is a process of becoming, always unfolding and transforming. If these ideas resonate with you or you would like to collaborate, I'd love to hear from you.</p>
+        <p>→ <a href="mailto:kylian@posthmndocs.com">kylian@posthmndocs.com</a><br>
+           → <a href="https://kylianweijers.com" target="_blank">kylianweijers.com</a></p>
+      </div>
+    </div>
+
+    <!-- Contact panel -->
+    <div id="pda-contact" class="pda-panel">
+      <div class="pda-section">
+        <div class="pda-section-title">CONTACT</div>
+        <div class="pda-section-sub">// POSTHUMAN DOCS</div>
+        <h3>Get in touch</h3>
+        <p>→ <a href="mailto:kylian@posthmndocs.com">kylian@posthmndocs.com</a></p>
+        <p>→ <a href="https://kylianweijers.com" target="_blank">kylianweijers.com</a></p>
+        <p>For collaboration, research, or just a conversation — reach out.</p>
+        <p><em>Posthuman Docs is a process of becoming, always unfolding and transforming.</em></p>
+      </div>
+    </div>
+
+  </div>
+
+  <div id="pda-nav">
+    <button class="pda-nav-btn" id="pnav-archive" onclick="pdaNav('archive')">
+      <span class="pda-nav-icon">🗄</span><span>ARCHIVE</span>
+    </button>
+    <button class="pda-nav-btn" id="pnav-about" onclick="pdaNav('about')">
+      <span class="pda-nav-icon">📄</span><span>ABOUT</span>
+    </button>
+    <button class="pda-nav-btn" id="pnav-contact" onclick="pdaNav('contact')">
+      <span class="pda-nav-icon">📝</span><span>CONTACT</span>
+    </button>
+  </div>
+</div>
+
+<!-- marked.js CDN -->
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+<script>
+// ── FRONTMATTER PARSER ──
+function parseFrontmatter(raw) {
+  const match = raw.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n([\s\S]*)$/);
+  if (!match) return { meta: {}, body: raw };
+  const meta = {};
+  match[1].split('\n').forEach(line => {
+    const [k, ...v] = line.split(':');
+    if (!k) return;
+    let val = v.join(':').trim();
+    // parse arrays like [a, b, c]
+    if (val.startsWith('[') && val.endsWith(']')) {
+      val = val.slice(1, -1).split(',').map(s => s.trim().replace(/^['"]|['"]$/g, ''));
+    }
+    meta[k.trim()] = val;
+  });
+  return { meta, body: match[2] };
+}
+
+// ── DOC PATH MAP ──
+// Maps doc id → file path under /docs/
+const docPaths = {
+  // PROJECTS
+  'fibres':            'docs/projects/fibres.md',
+  'alteregotistical':  'docs/projects/alteregotistical.md',
+
+  'voor-altijd-door':  'docs/projects/voor-altijd-door.md',
+  // THEORY
+  'manifesto':         'docs/theory/manifesto.md',
+  'posthumanism':      'docs/theory/posthumanism.md',
+  'documentary-form':  'docs/theory/documentary-form.md',
+  // FIELD NOTES
+  'care-labor':        'docs/field-notes/care-labor.md',
+  'body-as-archive':   'docs/field-notes/body-as-archive.md',
+  // MEDIA
+  'kylianweijers':     'docs/media/kylianweijers.md',
+  'vimeo':             'docs/media/vimeo.md',
+};
+
+// ── WINDOW MANAGEMENT ──
+var zTop = 20, mins = {};
+
+function focusWin(id) {
+  document.querySelectorAll('.win-window').forEach(w => {
+    w.classList.remove('focused');
+    const tb = w.querySelector('.win-titlebar');
+    if (tb) tb.classList.add('inactive');
+  });
+  const w = document.getElementById(id);
+  if (!w) return;
+  w.classList.add('focused'); w.style.zIndex = ++zTop;
+  const tb = w.querySelector('.win-titlebar');
+  if (tb) tb.classList.remove('inactive');
+  document.querySelectorAll('.tb-btn').forEach(b => b.classList.remove('active'));
+  const b = document.getElementById('tbb-' + id);
+  if (b) b.classList.add('active');
+}
+
+function openWin(id) {
+  const w = document.getElementById(id); if (!w) return;
+  w.classList.remove('hidden'); w.style.display = ''; mins[id] = false;
+  const b = document.getElementById('tbb-' + id); if (b) b.style.display = '';
+  focusWin(id);
+}
+
+function closeWin(id) {
+  const w = document.getElementById(id); if (!w) return;
+  w.classList.add('hidden');
+  const b = document.getElementById('tbb-' + id); if (b) b.style.display = 'none';
+}
+
+function minWin(id) {
+  const w = document.getElementById(id); if (!w) return;
+  w.style.display = 'none'; mins[id] = true;
+}
+
+function maxWin(id) {
+  const w = document.getElementById(id); if (!w) return;
+  if (w.dataset.mx === '1') {
+    w.style.top = w.dataset.t; w.style.left = w.dataset.l;
+    w.style.width = w.dataset.w; w.style.height = w.dataset.h;
+    w.dataset.mx = '0';
+  } else {
+    w.dataset.t = w.style.top; w.dataset.l = w.style.left;
+    w.dataset.w = w.style.width; w.dataset.h = w.style.height;
+    w.style.top = '0'; w.style.left = '0';
+    w.style.width = '100vw'; w.style.height = 'calc(100vh - 28px)';
+    w.dataset.mx = '1';
+  }
+}
+
+function tbClick(id) {
+  const w = document.getElementById(id); if (!w) return;
+  if (w.classList.contains('hidden')) { openWin(id); return; }
+  if (mins[id]) { w.style.display = ''; mins[id] = false; focusWin(id); return; }
+  const b = document.getElementById('tbb-' + id);
+  if (b && b.classList.contains('active')) { minWin(id); b.classList.remove('active'); }
+  else { focusWin(id); }
+}
+
+document.querySelectorAll('.win-window').forEach(w => {
+  w.addEventListener('mousedown', () => focusWin(w.id));
 });
 
-workLink.addEventListener('click', (e) => {
-    e.preventDefault();
-    document.body.classList.add('cover-active');
-    workCover.style.display = 'block';
-    setTimeout(() => workCover.classList.add('active'), 10);
+// ── DRAG ──
+(function () {
+  let drag = null, ox = 0, oy = 0;
+  document.querySelectorAll('.win-titlebar').forEach(tb => {
+    tb.addEventListener('mousedown', e => {
+      if (e.target.classList.contains('win-btn')) return;
+      const win = tb.closest('.win-window');
+      if (win.dataset.mx === '1') return;
+      drag = win; ox = e.clientX - win.offsetLeft; oy = e.clientY - win.offsetTop;
+      win.classList.add('dragging'); focusWin(win.id); e.preventDefault();
+    });
+  });
+  document.addEventListener('mousemove', e => {
+    if (!drag) return;
+    drag.style.left = (e.clientX - ox) + 'px';
+    drag.style.top = Math.max(0, e.clientY - oy) + 'px';
+  });
+  document.addEventListener('mouseup', () => {
+    if (drag) drag.classList.remove('dragging'); drag = null;
+  });
+})();
+
+// ── FOLDER TOGGLE ──
+function toggleF(id) {
+  const f = document.getElementById(id); if (f) f.classList.toggle('open');
+}
+
+// ── DOC OPEN (fetch-based) ──
+let hist = [];
+
+async function openDoc(id) {
+  const path = docPaths[id];
+  if (!path) return;
+
+  hist.push(id);
+
+  const content = document.getElementById('win-content');
+  content.innerHTML = '<div class="doc-loading">loading…</div>';
+  document.getElementById('addrbar').value = 'C:\\POSTHUMAN\\ARCHIVE\\' + path.replace(/\//g, '\\').replace('docs\\', '').toUpperCase();
+  document.getElementById('sb-text').textContent = path.split('/').pop();
+  document.getElementById('sb-size').textContent = '—';
+
+  // highlight active sidebar entry
+  document.querySelectorAll('.file-entry').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.file-entry').forEach(el => {
+    const oc = el.getAttribute('onclick');
+    if (oc && oc.includes("'" + id + "'")) el.classList.add('active');
+  });
+
+  try {
+    const res = await fetch(path);
+    if (!res.ok) throw new Error(`${res.status} ${res.statusText}`);
+    const raw = await res.text();
+    const { meta, body } = parseFrontmatter(raw);
+
+    const tags = Array.isArray(meta.tags)
+      ? meta.tags.map(t => `<span class="doc-tag">${t}</span>`).join('')
+      : '';
+
+    const byteSize = new TextEncoder().encode(raw).length;
+    const kb = (byteSize / 1024).toFixed(1);
+    document.getElementById('sb-size').textContent = kb + ' KB';
+
+    content.innerHTML =
+      '<div class="doc-view">' +
+      '<div class="doc-title">' + (meta.title || id) + '</div>' +
+      '<div class="doc-meta">' + (meta.meta || '') + '</div>' +
+      '<div class="doc-tags">' + tags + '</div>' +
+      '<div class="doc-body">' + marked.parse(body) + '</div>' +
+      '</div>';
+
+  } catch (err) {
+    content.innerHTML =
+      '<div class="doc-error">' +
+      '⚠ Could not load <strong>' + path + '</strong><br>' +
+      '<small>' + err.message + '</small><br><br>' +
+      'Make sure the file exists at the correct path on your server.' +
+      '</div>';
+  }
+}
+
+function goBack() {
+  if (hist.length > 1) {
+    hist.pop();
+    const prev = hist[hist.length - 1];
+    hist.pop();
+    openDoc(prev);
+  } else {
+    document.getElementById('win-content').innerHTML =
+      '<div class="splash" id="splash">' +
+      '<div class="splash-logo">POSTHUMAN DOCS</div>' +
+      '<div class="splash-sub">WELCOME USER</div>' +
+      '<div class="splash-hint">select a file from the archive</div>' +
+      '</div>';
+    document.getElementById('addrbar').value = 'C:\\POSTHUMAN\\ARCHIVE\\';
+    document.getElementById('sb-text').textContent = 'Ready';
+    hist = [];
+  }
+}
+
+// ── SIDEBAR TOGGLE ──
+function toggleSidebar() {
+  document.getElementById('win-sidebar').classList.toggle('collapsed');
+}
+// Collapse sidebar by default on mobile
+if (window.innerWidth <= 700) {
+  document.getElementById('win-sidebar').classList.add('collapsed');
+}
+
+// ── START MENU ──
+function toggleStart() { document.getElementById('start-menu').classList.toggle('open'); }
+function closeStart() { document.getElementById('start-menu').classList.remove('open'); }
+document.addEventListener('mousedown', e => {
+  if (!e.target.closest('#start-menu') && !e.target.closest('#start-btn')) closeStart();
 });
 
-aboutBack.addEventListener('click', (e) => {
-    e.preventDefault();
-    document.body.classList.remove('cover-active');
-    aboutCover.classList.remove('active');
-    setTimeout(() => aboutCover.style.display = 'none', 500);
-});
+// ── VISIT COUNTER ──
+(function () {
+  const key = 'phdocs_visits';
+  const count = (parseInt(localStorage.getItem(key)) || 0) + 1;
+  localStorage.setItem(key, count);
+  const el = document.querySelector('.splash-sub');
+  if (el) el.textContent = 'WELCOME USER #' + String(count).padStart(5, '0');
+})();
 
-workBack.addEventListener('click', (e) => {
-    e.preventDefault();
-    document.body.classList.remove('cover-active');
-    workCover.classList.remove('active');
-    setTimeout(() => workCover.style.display = 'none', 500);
-});
+// ── CLOCK ──
+function tick() {
+  const n = new Date();
+  const h = String(n.getHours()).padStart(2, '0');
+  const m = String(n.getMinutes()).padStart(2, '0');
+  document.getElementById('tb-clock').textContent = h + ':' + m;
+}
+tick(); setInterval(tick, 10000);
 
-        // Add wave animation effect to background
-        const background = document.querySelector('.background');
-        let animationFrame;
-        
-        function animateBackground() {
-            const time = Date.now() * 0.0001;
-            const x = Math.sin(time) * 2;
-            const y = Math.cos(time * 0.7) * 2;
-            
-            background.style.transform = `translate(${x}px, ${y}px) scale(1.05)`;
-            animationFrame = requestAnimationFrame(animateBackground);
-        }
-        
-        animateBackground();
-    </script>
+// ── WALLPAPER FLOAT ──
+const bg = document.getElementById('wallpaper');
+(function loop() {
+  const t = Date.now() * .0001;
+  bg.style.transform = 'translate(' + Math.sin(t) * 2 + 'px,' + Math.cos(t * .7) * 2 + 'px) scale(1.05)';
+  requestAnimationFrame(loop);
+})();
+
+// ── PDA ──
+var pdaPrev = 'archive';
+
+function pdaNav(panel) {
+  const panelEl = document.getElementById('pda-' + panel);
+  const isActive = panelEl && panelEl.classList.contains('active');
+  document.querySelectorAll('.pda-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.pda-nav-btn').forEach(b => b.classList.remove('active'));
+  const home = document.getElementById('pda-home');
+  if (isActive) {
+    home.style.display = '';
+    document.getElementById('pda-crumb').textContent = '';
+  } else {
+    home.style.display = 'none';
+    panelEl.classList.add('active');
+    document.getElementById('pnav-' + panel).classList.add('active');
+    pdaPrev = panel;
+    const labels = { archive: 'ARCHIVE', about: 'ABOUT', contact: 'CONTACT' };
+    document.getElementById('pda-crumb').textContent = labels[panel] || panel.toUpperCase();
+  }
+}
+
+function togglePF(id) {
+  const f = document.getElementById(id); if (f) f.classList.toggle('open');
+}
+
+async function pdaOpenDoc(id) {
+  const path = docPaths[id]; if (!path) return;
+  document.querySelectorAll('.pda-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.pda-nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('pda-docview').classList.add('active');
+  document.getElementById('pda-crumb').textContent = path.split('/').pop().toUpperCase();
+  const content = document.getElementById('pda-doc-content');
+  content.innerHTML = '<div style="padding:20px;color:var(--ink3);font-size:11px;letter-spacing:.12em">loading…</div>';
+  try {
+    const res = await fetch(path);
+    if (!res.ok) throw new Error(res.statusText);
+    const raw = await res.text();
+    const { meta, body } = parseFrontmatter(raw);
+    const tags = Array.isArray(meta.tags)
+      ? meta.tags.map(t => `<span class="doc-tag">${t}</span>`).join('') : '';
+    content.innerHTML =
+      '<div class="pda-doc-title">' + (meta.title || id) + '</div>' +
+      '<div class="pda-doc-meta">' + (meta.meta || '') + '</div>' +
+      '<div class="pda-doc-tags">' + tags + '</div>' +
+      '<div class="pda-doc-body">' + marked.parse(body) + '</div>';
+  } catch (err) {
+    content.innerHTML = '<div style="padding:20px;color:var(--amber2);font-size:12px">⚠ Could not load <strong>' + path + '</strong><br><small>' + err.message + '</small></div>';
+  }
+}
+
+function pdaBack() {
+  document.querySelectorAll('.pda-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.pda-nav-btn').forEach(b => b.classList.remove('active'));
+  const panelEl = document.getElementById('pda-' + pdaPrev);
+  const btnEl = document.getElementById('pnav-' + pdaPrev);
+  if (panelEl) panelEl.classList.add('active');
+  if (btnEl) btnEl.classList.add('active');
+  const labels = { archive: 'ARCHIVE', about: 'ABOUT', contact: 'CONTACT' };
+  document.getElementById('pda-crumb').textContent = labels[pdaPrev] || '';
+}
+
+// PDA wallpaper float
+const pdaBg = document.getElementById('pda-wallpaper');
+(function pdaLoop() {
+  const t = Date.now() * .0001;
+  pdaBg.style.transform = 'translate(' + Math.sin(t) * 2 + 'px,' + Math.cos(t * .7) * 2 + 'px) scale(1.05)';
+  requestAnimationFrame(pdaLoop);
+})();
+</script>
 </body>
 </html>
