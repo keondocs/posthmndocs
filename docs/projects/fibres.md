@@ -48,12 +48,12 @@ I am in the process of finding out what this work needs to be.
 
 ### References
 
-Chantal Akerman, *Jeanne Dielman, 23 quai du Commerce, 1080 Bruxelles*
-Agnès Varda, *The Gleaners and I*
-Trinh T. Minh-ha, *Reassemblage*
-Barry Jenkins, *Moonlight* (the diner scene)
-Rosi Braidotti, *The Posthuman*
-Stacy Alaimo & Susan Hekman (eds.), *Material Feminisms*
+- Chantal Akerman, *Jeanne Dielman, 23 quai du Commerce, 1080 Bruxelles*
+- Agnès Varda, *The Gleaners and I*
+- Trinh T. Minh-ha, *Reassemblage*
+- Barry Jenkins, *Moonlight* (the diner scene)
+- Rosi Braidotti, *The Posthuman*
+- Stacy Alaimo & Susan Hekman (eds.), *Material Feminisms*
 
 ### Status
 

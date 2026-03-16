@@ -42,6 +42,6 @@ In active development. First pitch submitted 2025. New funding application in pr
 
 ### References
 
-Stefan Berg, *Killen Som Kommer Att Glänsa*
-Nick Cave & Warren Ellis / Andrew Dominik, *This Much I Know To Be True*
-Vincent Boy Kars, *Independent Boy*
+- Stefan Berg, *Killen Som Kommer Att Glänsa*
+- Nick Cave & Warren Ellis / Andrew Dominik, *This Much I Know To Be True*
+- Vincent Boy Kars, *Independent Boy*
