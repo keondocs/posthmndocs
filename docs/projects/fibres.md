@@ -6,7 +6,7 @@ tags: [food, care, posthumanism, memory, portrait]
 
 ### Where it started
 
-I grew up with a mother who treated food as something serious. Not in a precious way, but in a grounded one. She cooked biological, made zilvervliesrijst and boekweit, paid attention to what went into the body. I can still taste it. I can still see her hands.
+I grew up with a mother who treated food as something serious. Not in a precious way, but in a grounded one. She cooked ecological, made brown rice and buckweat, carrots and chicory, paid attention to what went into the body and lamented about the loss of fibre and nutritions in our food due to mass production.
 
 Now I live at a distance from her, moving fast, and I forget to eat properly. Not dramatically, just quietly, the way most people around me also forget. Everyone I know is trying to live the life they want under pressure, and in that pressure, food becomes fuel at best, an afterthought at worst. And yet my mother is still there, still thinking about what her son is eating, still trying to care across the distance.
 
