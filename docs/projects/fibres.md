@@ -57,4 +57,6 @@ I am in the process of finding out what this work needs to be.
 
 ### Status
 
-In active development. First research phase: 2025. First test recordings: 2026.
+In active development. Applying for funding at Amarte March 21 2026. 
+
+First research phase: 2025. First test recordings: 2026.
